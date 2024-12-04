@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Grant Access{% endblock %}
+
+{% block content %}
+    <h1 class="mt-4">Grant Access</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    {% if requests %}
+        <form method="POST">
+            <div class="form-group">
+                <label for="resource">Resource:</label>
+                <select name="resource" id="resource" class="form-control" required>
+                    <option value="" disabled selected>Select a resource</option>
+                    {% for request in requests %}
+                        <option value="{{ request.resource }}">{{ request.resource }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select name="role" id="role" class="form-control" required>
+                    <option value="" disabled selected>Select a role</option>
+                    {% for request in requests %}
+                        <option value="{{ request.role }}">{{ request.role }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Grant Access</button>
+        </form>
+    {% else %}
+        <p class="mt-4">No requests</p>
+    {% endif %}
+{% endblock %}

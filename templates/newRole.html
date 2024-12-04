@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Create Role{% endblock %}
+
+{% block content %}
+    <h1>Create a New Role</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="post" action="{{ url_for('authorization.create_role') }}">
+        <div class="form-group">
+            <label for="role">Role Name:</label>
+            <input type="text" class="form-control" id="role" name="role" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="context">Context (comma separated):</label>
+            <input type="text" class="form-control" id="context" name="context" required>
+        </div>
+        
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="transferable" name="transferable">
+            <label class="form-check-label" for="transferable">Transferable</label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Create Role</button>
+    </form>
+{% endblock %}

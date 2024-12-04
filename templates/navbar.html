@@ -1,0 +1,49 @@
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Home</a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="authorizeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Authorize
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="authorizeDropdown">
+                        <a class="dropdown-item" href="{{ url_for('authorization.resource_request') }}">Request Access</a>
+                        <a class="dropdown-item" href="{{ url_for('authorization.grant') }}">Grant Access</a>
+                        <a class="dropdown-item" href="{{ url_for('authorization.register_resource') }}">Register Resource</a>
+                        <a class="dropdown-item" href="{{ url_for('authorization.create_role') }}">Create Role</a>
+                        <a class="dropdown-item" href="{{ url_for('authorization.add_user_to_role') }}">Add User to Role</a>
+                        <a class="dropdown-item" href="{{ url_for('authorization.promote_user') }}">Promote User</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Resources
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                        <a class="dropdown-item" href="/resources/re1">resource 1</a>
+                        <a class="dropdown-item" href="/resources/re2">resource 2</a>
+                        <a class="dropdown-item" href="/resources/re3">resource 3</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if request.cookies.get('authCookie') %}
+                    <li class="nav-item"></li>
+                        <a class="nav-link" href="/auth/logout">
+                            <img src="https://img.icons8.com/ios-filled/50/000000/power-off.png" alt="Logout" style="width: 20px; height: 20px;">
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/login">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}
